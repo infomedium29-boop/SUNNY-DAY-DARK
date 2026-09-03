@@ -1956,3 +1956,36 @@ html.intro-reveal .availability-bar{
   color:#fff;
   box-shadow:0 10px 26px rgba(37,211,102,.26);
 }
+
+
+/* v52 — larger, more visible floating WhatsApp and phone actions */
+.floating-actions{
+  right:24px;
+  bottom:24px;
+  gap:10px;
+}
+.float-btn{
+  width:58px;
+  height:58px;
+  font-size:20px;
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 12px 30px rgba(5,24,38,.28),0 3px 10px rgba(0,0,0,.12);
+  transition:transform .22s ease,filter .22s ease,box-shadow .22s ease;
+}
+.float-btn:hover{
+  transform:translateY(-3px) scale(1.04);
+  filter:brightness(1.08);
+  box-shadow:0 16px 34px rgba(5,24,38,.32),0 4px 12px rgba(0,0,0,.14);
+}
+.float-btn svg{
+  width:27px;
+  height:27px;
+  stroke-width:1.9;
+}
+.float-btn.whatsapp{background:#25D366;}
+.float-btn:not(.whatsapp){background:#08263b;}
+@media(max-width:640px){
+  .floating-actions{right:14px;bottom:14px;gap:9px}
+  .float-btn{width:52px;height:52px}
+  .float-btn svg{width:24px;height:24px}
+}
