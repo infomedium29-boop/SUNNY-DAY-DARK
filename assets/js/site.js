@@ -1,4 +1,12 @@
 
+// floating navigation
+const siteHeader=document.querySelector('.site-header');
+if(siteHeader){
+  const syncFloatingHeader=()=>siteHeader.classList.toggle('is-scrolled',window.scrollY>28);
+  syncFloatingHeader();
+  window.addEventListener('scroll',syncFloatingHeader,{passive:true});
+}
+
 const burger=document.querySelector('.burger'), mobile=document.querySelector('.mobile-menu');
 if(burger&&mobile){burger.addEventListener('click',()=>{mobile.classList.toggle('open');document.body.classList.toggle('menu-open')})}
 document.querySelectorAll('.reveal').forEach(el=>new IntersectionObserver(([e],o)=>{if(e.isIntersecting){e.target.classList.add('in');o.disconnect()}},{threshold:.08}).observe(el));
