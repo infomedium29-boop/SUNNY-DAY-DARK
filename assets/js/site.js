@@ -271,31 +271,75 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
     if(nested) return slug+'.html';
     return (lang==='hr'?'izleti/':'experiences/')+slug+'.html';
   };
-  const menuTitle={hr:'Svi izleti',en:'All experiences',pl:'Wszystkie wycieczki',de:'Alle Ausflüge',sk:'Všetky výlety',cs:'Všechny výlety',hu:'Összes program'}[lang]||'Experiences';
+  const menuTitle={hr:'Izleti i doživljaji',en:'Experiences & day trips',pl:'Wycieczki i atrakcje',de:'Ausflüge & Erlebnisse',sk:'Výlety a zážitky',cs:'Výlety a zážitky',hu:'Programok és kirándulások'}[lang]||'Experiences';
+  const viewAll={hr:'Pogledaj sve',en:'View all',pl:'Zobacz wszystkie',de:'Alle ansehen',sk:'Zobraziť všetky',cs:'Zobrazit vše',hu:'Összes megtekintése'}[lang]||'View all';
 
   const nav=document.querySelector('.nav');
   const exp=nav?[...nav.querySelectorAll('a')].find(a=>/experiences\.html$/.test(a.getAttribute('href')||'')):null;
   if(exp && !exp.closest('.nav-trip-dropdown')){
-    const wrap=document.createElement('div'); wrap.className='nav-trip-dropdown';
-    exp.parentNode.insertBefore(wrap,exp); wrap.appendChild(exp);
+    const wrap=document.createElement('div');
+    wrap.className='nav-trip-dropdown';
+    exp.parentNode.insertBefore(wrap,exp);
+    wrap.appendChild(exp);
     exp.classList.add('nav-trip-main-link');
-    exp.insertAdjacentHTML('beforeend','<span class="nav-trip-chevron" aria-hidden="true">⌄</span>');
-    const panel=document.createElement('div'); panel.className='nav-trip-panel';
-    panel.innerHTML=`<div class="nav-trip-panel-head"><span>${menuTitle}</span><a href="${(nested?'../':'')+'experiences.html'}">↗</a></div><div class="nav-trip-panel-grid">${data.map((d,i)=>`<a href="${tripHref(d[1],d[2])}"><span>${String(i+1).padStart(2,'0')}</span><b>${d[0]}</b></a>`).join('')}</div>`;
+    exp.insertAdjacentHTML('beforeend','<svg class="nav-trip-chevron" aria-hidden="true" viewBox="0 0 20 20"><path d="M5 7.5 10 12.5 15 7.5"></path></svg>');
+
+    const panel=document.createElement('div');
+    panel.className='nav-trip-panel';
+    panel.innerHTML=`
+      <div class="nav-trip-panel-head">
+        <div><small>Sunny Day</small><strong>${menuTitle}</strong></div>
+        <a class="nav-trip-view-all" href="${(nested?'../':'')+'experiences.html'}"><span>${viewAll}</span><b>↗</b></a>
+      </div>
+      <div class="nav-trip-panel-grid">
+        ${data.map((d,i)=>`<a href="${tripHref(d[1],d[2])}"><span class="nav-trip-index">${String(i+1).padStart(2,'0')}</span><b>${d[0]}</b><i>↗</i></a>`).join('')}
+      </div>`;
     wrap.appendChild(panel);
+
+    let closeTimer;
+    const openPanel=()=>{
+      clearTimeout(closeTimer);
+      wrap.classList.add('is-open');
+    };
+    const scheduleClose=()=>{
+      clearTimeout(closeTimer);
+      closeTimer=setTimeout(()=>wrap.classList.remove('is-open'),260);
+    };
+    wrap.addEventListener('mouseenter',openPanel);
+    wrap.addEventListener('mouseleave',scheduleClose);
+    wrap.addEventListener('focusin',openPanel);
+    wrap.addEventListener('focusout',e=>{if(!wrap.contains(e.relatedTarget))scheduleClose();});
+    panel.addEventListener('mouseenter',openPanel);
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')wrap.classList.remove('is-open');});
   }
 
   const mobileLinks=document.querySelector('.mobile-menu-links');
   const mExp=mobileLinks?[...mobileLinks.querySelectorAll(':scope > a')].find(a=>/experiences\.html$/.test(a.getAttribute('href')||'')):null;
   if(mExp && !mobileLinks.querySelector('.mobile-trip-group')){
-    const group=document.createElement('div'); group.className='mobile-trip-group';
-    const row=document.createElement('div'); row.className='mobile-trip-row';
-    mExp.parentNode.insertBefore(group,mExp); group.appendChild(row); row.appendChild(mExp);
-    const btn=document.createElement('button'); btn.type='button'; btn.className='mobile-trip-toggle'; btn.setAttribute('aria-expanded','false'); btn.setAttribute('aria-label',menuTitle); btn.innerHTML='<span></span>';
+    const group=document.createElement('div');
+    group.className='mobile-trip-group';
+    const row=document.createElement('div');
+    row.className='mobile-trip-row';
+    mExp.parentNode.insertBefore(group,mExp);
+    group.appendChild(row);
+    row.appendChild(mExp);
+
+    const btn=document.createElement('button');
+    btn.type='button';
+    btn.className='mobile-trip-toggle';
+    btn.setAttribute('aria-expanded','false');
+    btn.setAttribute('aria-label',menuTitle);
+    btn.innerHTML='<span aria-hidden="true"></span>';
     row.appendChild(btn);
-    const sub=document.createElement('div'); sub.className='mobile-trip-submenu';
-    sub.innerHTML=data.map(d=>`<a href="${tripHref(d[1],d[2])}">${d[0]}</a>`).join('');
+
+    const sub=document.createElement('div');
+    sub.className='mobile-trip-submenu';
+    sub.innerHTML=`<div class="mobile-trip-submenu-head"><span>${menuTitle}</span><a href="${(nested?'../':'')+'experiences.html'}">${viewAll} ↗</a></div>${data.map((d,i)=>`<a class="mobile-trip-link" href="${tripHref(d[1],d[2])}"><span>${String(i+1).padStart(2,'0')}</span><b>${d[0]}</b><i>↗</i></a>`).join('')}`;
     group.appendChild(sub);
-    btn.addEventListener('click',()=>{const open=group.classList.toggle('open');btn.setAttribute('aria-expanded',String(open));});
+
+    btn.addEventListener('click',()=>{
+      const open=group.classList.toggle('open');
+      btn.setAttribute('aria-expanded',String(open));
+    });
   }
 })();
