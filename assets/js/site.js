@@ -61,3 +61,30 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
   banner.querySelector('.privacy-necessary')?.addEventListener('click',()=>save('necessary'));
   banner.querySelector('.privacy-accept')?.addEventListener('click',()=>save('accepted'));
 })();
+
+
+// Homepage hero video: deferred loading to preserve performance.
+(()=>{
+  const video=document.querySelector('.hero-video');
+  const media=document.querySelector('.hero-media');
+  if(!video || !media) return;
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData=!!(navigator.connection && navigator.connection.saveData);
+  if(reduced || saveData) return;
+  const loadVideo=()=>{
+    if(video.dataset.loaded==='true') return;
+    const src=window.innerWidth<=768 ? video.dataset.mobileMp4 : video.dataset.desktopMp4;
+    if(!src) return;
+    video.src=src;
+    video.dataset.loaded='true';
+    const reveal=()=>media.classList.add('video-ready');
+    video.addEventListener('canplay',reveal,{once:true});
+    video.load();
+    video.play().then(reveal).catch(()=>{});
+  };
+  if('requestIdleCallback' in window){
+    window.addEventListener('load',()=>requestIdleCallback(loadVideo,{timeout:1500}),{once:true});
+  } else {
+    window.addEventListener('load',()=>setTimeout(loadVideo,800),{once:true});
+  }
+})();
