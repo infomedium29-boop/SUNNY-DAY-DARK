@@ -730,3 +730,86 @@ html.intro-reveal .availability-bar{
   }
   .hero p{color:#fff}
 }
+
+/* v26 — refined premium typography scale */
+@media(min-width:981px){
+  .nav{gap:21px}
+  .nav a{font-size:9.5px;letter-spacing:.115em}
+  .nav-cta{font-size:9px;padding:0 14px}
+  .lang{font-size:10px}
+}
+
+.hero-content .eyebrow{font-size:11px}
+.hero p{font-size:15px;line-height:1.68}
+.inner-hero p{font-size:13px}
+.back-link{font-size:10px}
+
+.property-body h3{font-size:21px}
+.meta{font-size:11.5px;line-height:1.55}
+.text-link{font-size:10px}
+.amenity-mini span{font-size:10.5px;line-height:1.45}
+
+.availability-cell label{font-size:9px}
+.availability-cell input,.availability-cell select{font-size:13px}
+.availability-submit{font-size:9.5px}
+
+.filter-btn{font-size:9px}
+.fact-row{font-size:11.5px}
+.feature-list li{font-size:12px}
+.inquiry-card h3{font-size:20px}
+.field label{font-size:9px}
+.field input,.field select,.field textarea{font-size:12.5px}
+.form-status{font-size:11px}
+.amenity-box b{font-size:13px}
+.amenity-box span{font-size:10px}
+
+.amenity-card h3,.experience-card h3{font-size:19px}
+.amenity-card p,.experience-card p{font-size:11.5px;line-height:1.6}
+.wide-cta p{font-size:12px}
+.location-points li{font-size:11.5px;line-height:1.55}
+.story-copy p{font-size:12.5px;line-height:1.75}
+.stat span{font-size:10px}
+.testimonial cite{font-size:10px}
+
+.footer-copy{font-size:11px}
+.footer-col h4{font-size:10px}
+.footer-col a,.footer-col p{font-size:11px;line-height:1.55}
+.footer-bottom{font-size:9px}
+
+.legal-shell p,.legal-shell li{font-size:13px}
+.legal-meta{font-size:11px!important}
+.consent-check{font-size:10px}
+
+@media(max-width:980px){
+  .hero-content .eyebrow{font-size:10.5px}
+  .hero p{font-size:14px}
+  .property-body h3{font-size:20.5px}
+  .meta{font-size:11px}
+  .amenity-mini span{font-size:10.5px}
+  .availability-cell label{font-size:8.5px}
+  .availability-cell input,.availability-cell select{font-size:12.5px}
+  .availability-submit{font-size:9px}
+}
+
+@media(max-width:640px){
+  .hero-content .eyebrow{font-size:10px;line-height:1.45}
+  .hero p{font-size:13.5px;line-height:1.6;max-width:340px}
+  .property-body h3{font-size:21px}
+  .meta{font-size:11.5px;line-height:1.55}
+  .text-link{font-size:10px}
+  .amenity-mini span{font-size:10.5px}
+  .availability-cell label{font-size:8px}
+  .availability-cell input,.availability-cell select{font-size:12px}
+  .availability-submit{font-size:8.5px;letter-spacing:.105em}
+  .amenity-card h3,.experience-card h3{font-size:18px}
+  .amenity-card p,.experience-card p{font-size:11px}
+  .story-copy p{font-size:12.5px}
+  .location-points li{font-size:11.5px}
+  .field label{font-size:9px}
+  .field input,.field select,.field textarea{font-size:12.5px}
+  .footer-copy{font-size:11px}
+  .footer-col h4{font-size:9.5px}
+  .footer-col a,.footer-col p{font-size:10.5px}
+  .footer-bottom{font-size:9px}
+  .legal-shell p,.legal-shell li{font-size:13px}
+}
