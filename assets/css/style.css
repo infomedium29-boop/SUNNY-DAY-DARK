@@ -2050,3 +2050,28 @@ html.intro-reveal .availability-bar{
   }
   .has-mobile-fixed-availability .floating-actions{bottom:78px;right:12px}
 }
+
+
+/* v54 — stronger emphasis for mobile availability CTAs */
+.mobile-menu-cta{
+  font:800 9px/1 var(--sans)!important;
+  letter-spacing:.17em!important;
+}
+.mobile-menu-cta span{
+  font-weight:800!important;
+}
+.mobile-fixed-availability{
+  font-weight:800;
+  letter-spacing:.17em;
+}
+.mobile-fixed-availability span{
+  font-weight:800;
+}
+@media(max-width:640px){
+  .mobile-menu-cta{
+    font-size:9.35px!important;
+  }
+  .mobile-fixed-availability{
+    font-size:10.25px;
+  }
+}
