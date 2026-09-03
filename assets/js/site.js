@@ -114,3 +114,46 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
   };
   window.setTimeout(finish,duration);
 })();
+
+// Mobile-friendly date placeholders for availability and inquiry forms.
+(()=>{
+  const useTextDates = window.matchMedia('(max-width: 820px), (pointer: coarse)').matches;
+  if(!useTextDates) return;
+
+  const isEn = document.documentElement.lang === 'en';
+  const placeholder = isEn ? 'Choose date' : 'Izaberite datum';
+
+  const setupDateField = (input) => {
+    if(!input || input.dataset.mobileDateReady === 'true') return;
+    input.dataset.mobileDateReady = 'true';
+    input.setAttribute('placeholder', placeholder);
+
+    const switchToTextIfEmpty = () => {
+      if(!input.value){
+        try{ input.type = 'text'; }catch(e){}
+        input.setAttribute('placeholder', placeholder);
+        input.classList.add('date-as-text');
+      }
+    };
+
+    const switchToDate = () => {
+      try{ input.type = 'date'; }catch(e){}
+      input.classList.remove('date-as-text');
+    };
+
+    switchToTextIfEmpty();
+
+    input.addEventListener('focus', switchToDate);
+    input.addEventListener('click', switchToDate);
+    input.addEventListener('touchstart', switchToDate, {passive:true});
+    input.addEventListener('blur', switchToTextIfEmpty);
+    input.addEventListener('change', () => {
+      if(input.value) input.classList.remove('date-as-text');
+      else switchToTextIfEmpty();
+    });
+
+    input.form?.addEventListener('reset', () => setTimeout(switchToTextIfEmpty, 0));
+  };
+
+  document.querySelectorAll('input[type="date"]').forEach(setupDateField);
+})();
