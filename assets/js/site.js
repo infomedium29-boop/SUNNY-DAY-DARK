@@ -383,3 +383,31 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
     });
   }
 })();
+
+
+// Fixed mobile CTA for quick access to the contact / availability page.
+(()=>{
+  const lang = document.documentElement.lang || 'hr';
+  const labels = {
+    hr:'Provjeri dostupnost',
+    en:'Check availability',
+    pl:'Sprawdź dostępność',
+    de:'Verfügbarkeit prüfen',
+    sk:'Skontrolovať dostupnosť',
+    cs:'Zkontrolovat dostupnost',
+    hu:'Elérhetőség ellenőrzése'
+  };
+  const label = labels[lang] || labels.en;
+  const path = location.pathname;
+  const nested = /\/(izleti|experiences)\//.test(path);
+  const href = nested ? '../contact.html' : 'contact.html';
+
+  const cta = document.createElement('a');
+  cta.className = 'mobile-fixed-availability';
+  cta.href = href;
+  cta.setAttribute('aria-label', label);
+  cta.innerHTML = `<span>${label}</span><b aria-hidden="true">↗</b>`;
+
+  document.body.appendChild(cta);
+  document.body.classList.add('has-mobile-fixed-availability');
+})();
