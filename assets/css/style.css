@@ -687,3 +687,8 @@ html.intro-reveal .availability-bar{
   .site-intro-bg,.site-intro-mark,.site-intro-logo,.site-intro-ring,.site-intro-ring::before,.site-intro-ring::after{animation:none!important;opacity:1!important;transform:none!important;clip-path:none!important;filter:none!important}
   .site-intro{transition:opacity .3s ease!important}
 }
+
+
+/* v21 — dedicated Sunny Day intro photograph */
+.site-intro-bg{background-position:center 48%}
+@media(max-width:640px){.site-intro-bg{background-position:58% center}}
