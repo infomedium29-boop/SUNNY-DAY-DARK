@@ -88,3 +88,29 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
     window.addEventListener('load',()=>setTimeout(loadVideo,800),{once:true});
   }
 })();
+
+
+// Premium first-entry intro for the homepage.
+(()=>{
+  const intro=document.querySelector('.site-intro');
+  if(!intro) return;
+  const root=document.documentElement;
+  if(root.classList.contains('intro-skip')){
+    intro.remove();
+    return;
+  }
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const duration=reduced?550:2350;
+  const exitDuration=reduced?280:1050;
+  const finish=()=>{
+    root.classList.add('intro-reveal');
+    intro.classList.add('is-leaving');
+    try{sessionStorage.setItem('sunny_intro_seen','1')}catch(e){}
+    window.setTimeout(()=>{
+      root.classList.remove('intro-first');
+      intro.remove();
+      window.setTimeout(()=>root.classList.remove('intro-reveal'),1200);
+    },exitDuration);
+  };
+  window.setTimeout(finish,duration);
+})();
