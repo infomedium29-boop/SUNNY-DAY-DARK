@@ -273,6 +273,7 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
   };
   const menuTitle={hr:'Izleti i doživljaji',en:'Experiences & day trips',pl:'Wycieczki i atrakcje',de:'Ausflüge & Erlebnisse',sk:'Výlety a zážitky',cs:'Výlety a zážitky',hu:'Programok és kirándulások'}[lang]||'Experiences';
   const viewAll={hr:'Pogledaj sve',en:'View all',pl:'Zobacz wszystkie',de:'Alle ansehen',sk:'Zobraziť všetky',cs:'Zobrazit vše',hu:'Összes megtekintése'}[lang]||'View all';
+  const learnMore={hr:'Saznaj više',en:'Learn more',pl:'Dowiedz się więcej',de:'Mehr erfahren',sk:'Zistiť viac',cs:'Zjistit více',hu:'Tudj meg többet'}[lang]||'Learn more';
 
   const nav=document.querySelector('.nav');
   const exp=nav?[...nav.querySelectorAll('a')].find(a=>/experiences\.html$/.test(a.getAttribute('href')||'')):null;
@@ -292,7 +293,7 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
         <a class="nav-trip-view-all" href="${(nested?'../':'')+'experiences.html'}"><span>${viewAll}</span><b>↗</b></a>
       </div>
       <div class="nav-trip-panel-grid">
-        ${data.map((d,i)=>`<a href="${tripHref(d[1],d[2])}"><span class="nav-trip-index">${String(i+1).padStart(2,'0')}</span><b>${d[0]}</b><i>↗</i></a>`).join('')}
+        ${data.map((d)=>`<a href="${tripHref(d[1],d[2])}"><b>${d[0]}</b><span class="nav-trip-more">${learnMore}</span></a>`).join('')}
       </div>`;
     wrap.appendChild(panel);
 
@@ -334,7 +335,7 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
 
     const sub=document.createElement('div');
     sub.className='mobile-trip-submenu';
-    sub.innerHTML=`<div class="mobile-trip-submenu-head"><span>${menuTitle}</span><a href="${(nested?'../':'')+'experiences.html'}">${viewAll} ↗</a></div>${data.map((d,i)=>`<a class="mobile-trip-link" href="${tripHref(d[1],d[2])}"><span>${String(i+1).padStart(2,'0')}</span><b>${d[0]}</b><i>↗</i></a>`).join('')}`;
+    sub.innerHTML=`<div class="mobile-trip-submenu-head"><span>${menuTitle}</span><a href="${(nested?'../':'')+'experiences.html'}">${viewAll} ↗</a></div>${data.map((d)=>`<a class="mobile-trip-link" href="${tripHref(d[1],d[2])}"><b>${d[0]}</b><span class="mobile-trip-more">${learnMore}</span></a>`).join('')}`;
     group.appendChild(sub);
 
     btn.addEventListener('click',()=>{
