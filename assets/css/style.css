@@ -1697,3 +1697,41 @@ html.intro-reveal .availability-bar{
 @media(max-width:640px){
   .trip-lead .trip-editorial-copy{font-size:14.5px;line-height:1.8}
 }
+
+
+/* v46 excursion cards refinement */
+.trip-directory-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:stretch}
+.trip-directory-card{min-height:360px;padding:24px;border-radius:28px;box-shadow:0 18px 44px rgba(9,34,54,.10);border:1px solid rgba(255,255,255,.08);transition:transform .28s ease,box-shadow .28s ease}
+.trip-directory-card--photo{background:linear-gradient(145deg,#0a2236,#113553)}
+.trip-card-media{position:absolute;inset:0;z-index:0;background-size:cover;background-repeat:no-repeat;background-position:center center;transform:scale(1.02);transition:transform 1s cubic-bezier(.2,.7,.2,1),filter .35s ease;filter:saturate(1.04) contrast(1.02) brightness(.98)}
+.trip-directory-card::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(6,19,32,.10) 0%,rgba(6,19,32,.18) 18%,rgba(6,19,32,.46) 48%,rgba(6,19,32,.88) 100%),linear-gradient(125deg,rgba(4,16,28,.18) 0%,rgba(4,16,28,0) 40%)}
+.trip-directory-card::before{content:'';position:absolute;right:-85px;top:-85px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(234,189,65,.18),rgba(234,189,65,0) 70%);z-index:1;pointer-events:none}
+.trip-directory-card:hover{transform:translateY(-6px);box-shadow:0 28px 60px rgba(9,34,54,.18)}
+.trip-directory-card:hover .trip-card-media{transform:scale(1.08)}
+.trip-card-top,.trip-card-content,.trip-card-cta{position:relative;z-index:2}
+.trip-card-top{display:flex;justify-content:flex-end;align-items:center;min-height:18px;margin-bottom:12px}
+.trip-card-badge{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#f0c442;font-weight:700}
+.trip-card-type{display:block;margin-bottom:12px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+.trip-card-content{margin-top:auto;padding-top:72px;display:flex;flex-direction:column;align-items:flex-start}
+.trip-directory-card h3{margin:0 0 10px;max-width:92%;font:500 31px/1.08 var(--serif);color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.26)}
+.trip-directory-card p{margin:0;max-width:95%;font-size:14px;line-height:1.6;color:rgba(255,255,255,.90)}
+.trip-card-index{display:none!important}
+.trip-card-cta{display:inline-flex;align-items:center;gap:10px;margin-top:18px;padding:10px 16px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#fff;font-weight:700;transition:background .25s ease,border-color .25s ease,transform .25s ease,box-shadow .25s ease}
+.trip-card-cta b{font-size:14px;line-height:1;transform:none}
+.trip-directory-card:hover .trip-card-cta{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.34);transform:translateX(2px);box-shadow:0 10px 25px rgba(0,0,0,.14)}
+
+@media (max-width: 1200px){
+  .trip-directory-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+}
+
+@media (max-width: 768px){
+  .trip-directory-grid{grid-template-columns:1fr;gap:16px}
+  .trip-directory-card{min-height:310px;padding:22px;border-radius:26px}
+  .trip-card-top{margin-bottom:10px}
+  .trip-card-badge{font-size:9px;letter-spacing:.14em}
+  .trip-card-type{font-size:9px;margin-bottom:10px}
+  .trip-card-content{padding-top:64px}
+  .trip-directory-card h3{font-size:30px;line-height:1.06;max-width:95%}
+  .trip-directory-card p{font-size:13.5px;line-height:1.58;max-width:96%}
+  .trip-card-cta{margin-top:16px;padding:11px 16px;font-size:10px;letter-spacing:.13em}
+}
