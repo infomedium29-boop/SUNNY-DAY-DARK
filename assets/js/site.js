@@ -90,7 +90,7 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
 })();
 
 
-// Premium first-entry intro for the homepage.
+// Cinematic first-entry intro for the homepage.
 (()=>{
   const intro=document.querySelector('.site-intro');
   if(!intro) return;
@@ -100,8 +100,8 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
     return;
   }
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const duration=reduced?550:2350;
-  const exitDuration=reduced?280:1050;
+  const duration=reduced?450:2050;
+  const exitDuration=reduced?300:950;
   const finish=()=>{
     root.classList.add('intro-reveal');
     intro.classList.add('is-leaving');
@@ -109,7 +109,7 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
     window.setTimeout(()=>{
       root.classList.remove('intro-first');
       intro.remove();
-      window.setTimeout(()=>root.classList.remove('intro-reveal'),1200);
+      window.setTimeout(()=>root.classList.remove('intro-reveal'),1050);
     },exitDuration);
   };
   window.setTimeout(finish,duration);
