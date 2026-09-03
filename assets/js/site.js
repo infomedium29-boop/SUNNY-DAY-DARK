@@ -116,15 +116,22 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
   window.setTimeout(finish,duration);
 })();
 
-// Mobile-friendly date placeholders for availability and inquiry forms.
+// Date placeholders for availability and inquiry forms.
 (()=>{
   const useTextDates = window.matchMedia('(max-width: 820px), (pointer: coarse)').matches;
-  if(!useTextDates) return;
+  const lang = document.documentElement.lang || 'hr';
+  const placeholderMap = {
+    hr:'Izaberite datum',
+    en:'Choose date',
+    pl:'Wybierz datę',
+    de:'Datum wählen',
+    sk:'Vyberte dátum',
+    cs:'Vyberte datum',
+    hu:'Válasszon dátumot'
+  };
+  const placeholder = placeholderMap[lang] || placeholderMap.en;
 
-  const isEn = document.documentElement.lang === 'en';
-  const placeholder = isEn ? 'Choose date' : 'Izaberite datum';
-
-  const setupDateField = (input) => {
+  const setupMobileDateField = (input) => {
     if(!input || input.dataset.mobileDateReady === 'true') return;
     input.dataset.mobileDateReady = 'true';
     input.setAttribute('placeholder', placeholder);
@@ -143,7 +150,6 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
     };
 
     switchToTextIfEmpty();
-
     input.addEventListener('focus', switchToDate);
     input.addEventListener('click', switchToDate);
     input.addEventListener('touchstart', switchToDate, {passive:true});
@@ -152,11 +158,44 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
       if(input.value) input.classList.remove('date-as-text');
       else switchToTextIfEmpty();
     });
-
     input.form?.addEventListener('reset', () => setTimeout(switchToTextIfEmpty, 0));
   };
 
-  document.querySelectorAll('input[type="date"]').forEach(setupDateField);
+  const setupDesktopDateField = (input) => {
+    if(!input || input.dataset.desktopDateReady === 'true') return;
+    const cell = input.closest('.availability-cell');
+    if(!cell) return;
+
+    input.dataset.desktopDateReady = 'true';
+    cell.classList.add('has-date-placeholder');
+
+    const overlay = document.createElement('span');
+    overlay.className = 'desktop-date-placeholder';
+    overlay.textContent = placeholder;
+    cell.appendChild(overlay);
+
+    const sync = () => {
+      const empty = !input.value;
+      cell.classList.toggle('show-date-placeholder', empty && document.activeElement !== input);
+      input.classList.toggle('date-placeholder-covered', empty && document.activeElement !== input);
+    };
+
+    input.addEventListener('focus', sync);
+    input.addEventListener('blur', sync);
+    input.addEventListener('change', sync);
+    input.addEventListener('input', sync);
+    input.form?.addEventListener('reset', () => setTimeout(sync, 0));
+
+    sync();
+  };
+
+  const dateInputs = [...document.querySelectorAll('input[type="date"]')];
+
+  if(useTextDates){
+    dateInputs.forEach(setupMobileDateField);
+  }else{
+    dateInputs.forEach(setupDesktopDateField);
+  }
 })();
 
 

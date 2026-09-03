@@ -1901,3 +1901,43 @@ html.intro-reveal .availability-bar{
     box-shadow:0 8px 22px rgba(4,18,30,.12),inset 0 1px 0 rgba(255,255,255,.04);
   }
 }
+
+
+/* v50 — desktop date placeholder matching mobile */
+.availability-cell.has-date-placeholder{
+  position:relative;
+}
+.availability-cell .desktop-date-placeholder{
+  position:absolute;
+  left:22px;
+  bottom:18px;
+  z-index:3;
+  pointer-events:none;
+  font-size:15px;
+  line-height:1.4;
+  color:#1b2630;
+  opacity:0;
+  transition:opacity .16s ease;
+}
+.availability-cell.show-date-placeholder .desktop-date-placeholder{
+  opacity:1;
+}
+.availability-cell input.date-placeholder-covered{
+  color:transparent!important;
+  caret-color:transparent;
+}
+.availability-cell input.date-placeholder-covered::-webkit-datetime-edit,
+.availability-cell input.date-placeholder-covered::-webkit-datetime-edit-fields-wrapper,
+.availability-cell input.date-placeholder-covered::-webkit-datetime-edit-text,
+.availability-cell input.date-placeholder-covered::-webkit-datetime-edit-month-field,
+.availability-cell input.date-placeholder-covered::-webkit-datetime-edit-day-field,
+.availability-cell input.date-placeholder-covered::-webkit-datetime-edit-year-field{
+  color:transparent!important;
+}
+@media(max-width:980px){
+  .availability-cell .desktop-date-placeholder{
+    left:20px;
+    bottom:17px;
+    font-size:13.5px;
+  }
+}
