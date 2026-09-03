@@ -14,3 +14,10 @@ Deployment: upload this folder to GitHub and deploy with Cloudflare Pages as a s
 - Experiences + SEO pages for Korčula, Mljet, Ston, Viganj, Baćina Lakes and Kravica
 - OpenStreetMap embed requires no API key
 - All property imagery comes from the supplied AVIF archive.
+
+
+## Privacy / GDPR
+- Added HR/EN Privacy Policy and GDPR rights pages.
+- Added required privacy consent checkbox to inquiry forms.
+- Added a privacy consent banner. No analytics/marketing scripts are loaded by default.
+- Before final production launch, replace controller/contact details with the exact legal owner details if needed.

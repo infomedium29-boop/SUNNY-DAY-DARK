@@ -37,3 +37,27 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
  const data=new FormData(form);data.append('access_key',key);
  try{let r=await fetch('https://api.web3forms.com/submit',{method:'POST',body:data});let j=await r.json();if(status)status.textContent=j.success?(form.dataset.lang==='en'?'Thank you. Your inquiry has been sent.':'Hvala. Vaš upit je poslan.'):(form.dataset.lang==='en'?'Something went wrong. Please try again.':'Došlo je do pogreške. Pokušajte ponovno.'); if(j.success)form.reset()}catch{if(status)status.textContent=form.dataset.lang==='en'?'Unable to send right now. Please contact us by phone or WhatsApp.':'Trenutno nije moguće poslati. Kontaktirajte nas telefonom ili WhatsAppom.'}
 }));
+
+
+// Privacy / cookie consent. No analytics or marketing scripts are loaded by default.
+(()=>{
+  const isEn=document.documentElement.lang==='en';
+  const path=location.pathname;
+  const inNestedExperience=/\/experiences\//.test(path) || /\/izleti\//.test(path);
+  let privacyHref;
+  if(isEn){ privacyHref=inNestedExperience?'../privacy-policy.html':'privacy-policy.html'; }
+  else { privacyHref=inNestedExperience?'../politika-privatnosti.html':'politika-privatnosti.html'; }
+  const banner=document.createElement('div');
+  banner.className='privacy-banner';
+  banner.setAttribute('role','dialog');
+  banner.setAttribute('aria-label',isEn?'Privacy settings':'Postavke privatnosti');
+  banner.innerHTML=isEn
+    ? `<div class="privacy-copy"><strong>Your privacy</strong><p>We use necessary technologies and local storage for core website functions and to remember your privacy choice. Optional analytics or marketing technologies will not be activated without consent. <a href="${privacyHref}">Privacy Policy</a></p></div><div class="privacy-actions"><button class="privacy-necessary" type="button">Necessary only</button><button class="privacy-accept" type="button">Accept</button></div>`
+    : `<div class="privacy-copy"><strong>Vaša privatnost</strong><p>Koristimo nužne tehnologije i lokalnu pohranu za osnovno funkcioniranje stranice i pamćenje vašeg odabira privatnosti. Analitika ili marketinške tehnologije neće se aktivirati bez privole. <a href="${privacyHref}">Politika privatnosti</a></p></div><div class="privacy-actions"><button class="privacy-necessary" type="button">Samo nužni</button><button class="privacy-accept" type="button">Prihvati</button></div>`;
+  document.body.appendChild(banner);
+  const saved=localStorage.getItem('sunny_privacy_consent');
+  if(!saved) requestAnimationFrame(()=>banner.classList.add('show'));
+  const save=(choice)=>{localStorage.setItem('sunny_privacy_consent',choice);banner.classList.remove('show');};
+  banner.querySelector('.privacy-necessary')?.addEventListener('click',()=>save('necessary'));
+  banner.querySelector('.privacy-accept')?.addEventListener('click',()=>save('accepted'));
+})();
