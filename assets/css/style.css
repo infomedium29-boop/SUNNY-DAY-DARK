@@ -1267,3 +1267,33 @@ html.intro-reveal .availability-bar{
 .lang-flag svg{width:22px;height:15px;border-radius:3px;box-shadow:0 0 0 1px rgba(255,255,255,.16)}
 .lang-switcher-toggle .lang-flag{width:21px;height:17px;flex-basis:21px}
 .lang-switcher-toggle .lang-flag svg{width:21px;height:14px}
+
+
+/* v37 — fix language flag appearance and prevent flag rotation */
+.lang-switcher-toggle > svg:not(.lang-switcher-chevron){
+  width:auto;
+  height:auto;
+  stroke:none;
+}
+.lang-switcher-toggle .lang-switcher-chevron{
+  width:12px;
+  height:12px;
+  display:block;
+  stroke:currentColor;
+  stroke-width:1.8;
+  fill:none;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  transition:transform .22s ease;
+}
+.lang-switcher.open .lang-switcher-toggle .lang-switcher-chevron{
+  transform:rotate(180deg);
+}
+.lang-switcher-toggle .lang-flag svg,
+.lang-switcher.open .lang-switcher-toggle .lang-flag svg{
+  transform:none !important;
+  transition:none !important;
+}
+.lang-flag svg{
+  object-fit:contain;
+}
