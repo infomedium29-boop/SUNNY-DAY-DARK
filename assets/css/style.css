@@ -277,6 +277,7 @@
     min-height:54px;
     padding:0 18px!important;
     border:1px solid rgba(255,255,255,.86)!important;
+    border-radius:20px;
     background:#fff;
     color:var(--navy)!important;
     display:flex!important;
