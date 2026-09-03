@@ -8,7 +8,17 @@ if(siteHeader){
 }
 
 const burger=document.querySelector('.burger'), mobile=document.querySelector('.mobile-menu');
-if(burger&&mobile){burger.addEventListener('click',()=>{mobile.classList.toggle('open');document.body.classList.toggle('menu-open')})}
+if(burger&&mobile){
+  const setMobileMenu=(open)=>{
+    mobile.classList.toggle('open',open);
+    document.body.classList.toggle('menu-open',open);
+    burger.setAttribute('aria-expanded',String(open));
+    mobile.setAttribute('aria-hidden',String(!open));
+  };
+  burger.addEventListener('click',()=>setMobileMenu(!mobile.classList.contains('open')));
+  mobile.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMobileMenu(false)));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')setMobileMenu(false)});
+}
 document.querySelectorAll('.reveal').forEach(el=>new IntersectionObserver(([e],o)=>{if(e.isIntersecting){e.target.classList.add('in');o.disconnect()}},{threshold:.08}).observe(el));
 // apartment filter
 const filters=document.querySelectorAll('.filter-btn');
