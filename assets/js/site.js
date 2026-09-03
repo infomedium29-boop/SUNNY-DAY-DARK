@@ -162,14 +162,14 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
 
 // Language switcher dropdowns (desktop + mobile)
 (()=>{
-  const languageFlags = {
-    HR:'🇭🇷',
-    EN:'🇬🇧',
-    PL:'🇵🇱',
-    DE:'🇩🇪',
-    SK:'🇸🇰',
-    CZ:'🇨🇿',
-    HU:'🇭🇺'
+  const languageMeta = {
+    HR:{label:'Hrvatski', short:'HR', flag:`<svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" rx="3" fill="#fff"/><rect width="24" height="5.33" rx="3" fill="#E43D30"/><rect y="10.67" width="24" height="5.33" rx="0 0 3 3" fill="#244AA5"/><rect x="9" y="5" width="6" height="6" rx="1" fill="#fff" stroke="#d9d9d9" stroke-width=".4"/><path d="M9 8h6M12 5v6" stroke="#E43D30" stroke-width=".9"/><path d="M10.5 5v6M13.5 5v6" stroke="#244AA5" stroke-width=".9" opacity=".65"/></svg>`},
+    EN:{label:'English', short:'EN', flag:`<svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" rx="3" fill="#244AA5"/><path d="M0 0 24 16M24 0 0 16" stroke="#fff" stroke-width="3.5"/><path d="M0 0 24 16M24 0 0 16" stroke="#D93737" stroke-width="1.8"/><path d="M12 0v16M0 8h24" stroke="#fff" stroke-width="5.3"/><path d="M12 0v16M0 8h24" stroke="#D93737" stroke-width="2.6"/></svg>`},
+    PL:{label:'Polski', short:'PL', flag:`<svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" rx="3" fill="#fff"/><rect y="8" width="24" height="8" rx="0 0 3 3" fill="#DC3155"/></svg>`},
+    DE:{label:'Deutsch', short:'DE', flag:`<svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" rx="3" fill="#111"/><rect y="5.33" width="24" height="5.33" fill="#D33535"/><rect y="10.67" width="24" height="5.33" rx="0 0 3 3" fill="#F2C94C"/></svg>`},
+    SK:{label:'Slovenčina', short:'SK', flag:`<svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" rx="3" fill="#fff"/><rect y="5.33" width="24" height="5.33" fill="#244AA5"/><rect y="10.67" width="24" height="5.33" rx="0 0 3 3" fill="#D93737"/><path d="M7 4.2c1.6 0 2.9 1.2 2.9 2.7v2.3c0 1.9-1.4 3.5-3.3 4-1.9-.5-3.3-2.1-3.3-4V6.9c0-1.5 1.3-2.7 2.9-2.7Z" fill="#fff" stroke="#244AA5" stroke-width=".45"/><path d="M5.5 7.5h2.4M6.7 6.3v3.3" stroke="#D93737" stroke-width=".7"/><path d="M4.9 8.8c1.1.8 2.5.8 3.6 0" stroke="#244AA5" stroke-width=".55" fill="none"/></svg>`},
+    CZ:{label:'Čeština', short:'CZ', flag:`<svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" rx="3" fill="#fff"/><rect y="8" width="24" height="8" rx="0 0 3 3" fill="#D93737"/><path d="M0 0v16l10-8Z" fill="#244AA5"/></svg>`},
+    HU:{label:'Magyar', short:'HU', flag:`<svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" rx="3" fill="#D93737"/><rect y="5.33" width="24" height="5.33" fill="#fff"/><rect y="10.67" width="24" height="5.33" rx="0 0 3 3" fill="#2F8D46"/></svg>`}
   };
 
   const closeAllLanguageMenus = ()=>{
@@ -180,10 +180,11 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
     });
   };
 
-  const languageMarkup = (code)=>{
+  const languageMarkup = (code, mode='menu')=>{
     const cleanCode = (code || '').trim().toUpperCase();
-    const flag = languageFlags[cleanCode] || '🌐';
-    return `<span class="lang-inline"><span class="lang-flag" aria-hidden="true">${flag}</span><span class="lang-code">${cleanCode}</span></span>`;
+    const meta = languageMeta[cleanCode] || {label: cleanCode, short: cleanCode, flag:''};
+    const label = mode === 'toggle' ? meta.short : meta.label;
+    return `<span class="lang-inline"><span class="lang-flag" aria-hidden="true">${meta.flag}</span><span class="lang-code">${label}</span></span>`;
   };
 
   const enhanceLanguageBlock = (container, mobile=false)=>{
@@ -206,7 +207,7 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
     toggle.className = 'lang-switcher-toggle';
     toggle.setAttribute('aria-expanded','false');
     toggle.setAttribute('aria-label', mobile ? 'Odabir jezika' : 'Language selector');
-    toggle.innerHTML = `${languageMarkup(currentLabel)}<svg aria-hidden="true" viewBox="0 0 20 20"><path d="M5 7.5 10 12.5 15 7.5"></path></svg>`;
+    toggle.innerHTML = `${languageMarkup(currentLabel, 'toggle')}<svg aria-hidden="true" viewBox="0 0 20 20"><path d="M5 7.5 10 12.5 15 7.5"></path></svg>`;
 
     const menu = document.createElement('div');
     menu.className = 'lang-switcher-menu';
@@ -215,7 +216,7 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
       const clone = link.cloneNode(true);
       const code = (clone.textContent || '').trim();
       clone.classList.add('lang-option');
-      clone.innerHTML = languageMarkup(code);
+      clone.innerHTML = languageMarkup(code, 'menu');
       if(clone.classList.contains('active')) clone.setAttribute('aria-current','true');
       menu.appendChild(clone);
     });
