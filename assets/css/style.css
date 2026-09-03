@@ -1941,3 +1941,18 @@ html.intro-reveal .availability-bar{
     font-size:13.5px;
   }
 }
+
+
+/* v51 — WhatsApp contact CTA */
+.contact-grid a.btn-outline[href*="wa.me"]{
+  background:#25D366;
+  border-color:#25D366;
+  color:#fff;
+  box-shadow:0 8px 22px rgba(37,211,102,.18);
+}
+.contact-grid a.btn-outline[href*="wa.me"]:hover{
+  background:#1fbd5a;
+  border-color:#1fbd5a;
+  color:#fff;
+  box-shadow:0 10px 26px rgba(37,211,102,.26);
+}
