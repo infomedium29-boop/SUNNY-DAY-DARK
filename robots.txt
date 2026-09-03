@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.sunnydayorebic.com/sitemap.xml
