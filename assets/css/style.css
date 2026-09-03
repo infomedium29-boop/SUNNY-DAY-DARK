@@ -867,3 +867,154 @@ html.intro-reveal .availability-bar{
   .meta{font-size:12px}
   .text-link{font-size:10.5px}
 }
+
+/* v29 — full site typography harmonization and readability pass */
+.section-lead{font-size:16px;line-height:1.75}
+.inner-hero h1{font-size:clamp(40px,5.3vw,58px)}
+.inner-hero p{font-size:14px;line-height:1.65}
+.back-link{font-size:10.5px}
+.btn{font-size:10.5px;letter-spacing:.11em}
+
+.detail-title-row h1{font-size:38px;line-height:1.08}
+.detail-copy h2{font-size:25px}
+.detail-copy p{font-size:15.5px;line-height:1.82;color:#5f6970}
+.inquiry-card h3{font-size:21px}
+.wide-cta h2{font-size:31px}
+.wide-cta p{font-size:12.75px;line-height:1.65}
+.story-copy h2{font-size:30px;margin-bottom:14px}
+.story-copy p{font-size:14px;line-height:1.8}
+.contact-item b{font-size:10.5px}
+.contact-item span,.contact-item a{font-size:13px;line-height:1.7}
+.destination-body article p{font-size:15.5px;line-height:1.82}
+.destination-body article h2{font-size:31px}
+.destination-aside h3{font-size:20px}
+.destination-aside ul{font-size:12.5px;line-height:1.7}
+.seo-note{font-size:10.5px;line-height:1.6}
+.privacy-copy strong{font-size:18px}
+.privacy-copy p{font-size:11.5px;line-height:1.6}
+.privacy-actions button{font-size:9px;letter-spacing:.11em}
+
+@media(min-width:981px){
+  body{font-size:15.5px}
+  .site-header .nav-wrap{height:72px;padding-left:22px;padding-right:22px}
+  .nav{gap:18px}
+  .nav a{font-size:12px;letter-spacing:.08em;font-weight:500}
+  .nav-cta{min-height:40px;padding:0 18px;font-size:11.25px;letter-spacing:.085em}
+  .lang{font-size:11.25px;gap:10px}
+
+  .hero-content .eyebrow{font-size:11.5px}
+  .hero p{font-size:15.5px;line-height:1.72;max-width:540px}
+
+  .availability-bar{min-height:82px}
+  .availability-cell{padding:19px 22px}
+  .availability-cell label{font-size:10.5px;letter-spacing:.14em;margin-bottom:6px}
+  .availability-cell input,.availability-cell select{font-size:15px;line-height:1.4}
+  .availability-submit{font-size:11.25px;letter-spacing:.11em;padding:0 24px}
+
+  .property-body{padding:20px 19px 21px}
+  .property-body h3{font-size:24px;line-height:1.22}
+  .meta{font-size:13.25px;line-height:1.6;gap:9px}
+  .text-link{font-size:11.5px;letter-spacing:.115em}
+  .amenity-mini span{font-size:12px;line-height:1.5}
+  .testimonial blockquote{font-size:19px}
+  .testimonial cite{font-size:10.5px}
+
+  .filter-btn{font-size:10.5px}
+  .fact-row{font-size:13px;line-height:1.6}
+  .feature-list li{font-size:13px}
+  .field label{font-size:10px}
+  .field input,.field select,.field textarea{font-size:14px;padding:11px 12px}
+  .form-status{font-size:11.5px}
+  .amenity-box b{font-size:14px}
+  .amenity-box span{font-size:11px;line-height:1.5}
+
+  .amenity-card h3,.experience-card h3{font-size:21px;line-height:1.25}
+  .amenity-card p,.experience-card p{font-size:12.75px;line-height:1.65}
+  .location-points li{font-size:13px;line-height:1.65}
+  .stat span{font-size:11px;line-height:1.45}
+
+  .footer-copy{font-size:12px;line-height:1.75}
+  .footer-col h4{font-size:10.75px}
+  .footer-col a,.footer-col p{font-size:12px;line-height:1.6}
+  .footer-bottom{font-size:10px}
+
+  .legal-shell h3{font-size:15px}
+  .legal-shell p,.legal-shell li{font-size:14px;line-height:1.85}
+  .legal-meta{font-size:11.5px!important}
+  .consent-check{font-size:10.5px;line-height:1.6}
+}
+
+@media(min-width:641px) and (max-width:980px){
+  body{font-size:15px}
+  .inner-hero h1{font-size:clamp(38px,5vw,50px)}
+  .hero p{font-size:14.5px}
+  .availability-cell label{font-size:9.5px}
+  .availability-cell input,.availability-cell select{font-size:13.5px}
+  .availability-submit{font-size:10px}
+  .property-body h3{font-size:22.5px}
+  .meta{font-size:12.25px}
+  .text-link{font-size:10.75px}
+  .amenity-mini span{font-size:11.25px}
+  .detail-title-row h1{font-size:35px}
+  .fact-row{font-size:12.25px}
+  .feature-list li{font-size:12.5px}
+  .field input,.field select,.field textarea{font-size:13px}
+  .amenity-card h3,.experience-card h3{font-size:20px}
+  .amenity-card p,.experience-card p{font-size:12px}
+  .story-copy p{font-size:13.25px}
+  .location-points li{font-size:12.25px}
+  .contact-item span,.contact-item a{font-size:12.5px}
+  .footer-copy,.footer-col a,.footer-col p{font-size:11.25px}
+  .footer-bottom{font-size:9.5px}
+  .privacy-copy p{font-size:11px}
+}
+
+@media(max-width:640px){
+  body{font-size:15px}
+  .section-title{font-size:clamp(33px,9vw,44px)}
+  .section-lead{font-size:15px;line-height:1.72}
+  .inner-hero h1{font-size:42px;line-height:1.03}
+  .inner-hero p{font-size:13.5px;line-height:1.6}
+  .back-link{font-size:10px}
+  .hero p{font-size:13.75px;line-height:1.65}
+  .availability-cell label{font-size:8.75px}
+  .availability-cell input,.availability-cell select{font-size:13px}
+  .availability-submit{font-size:9.25px;letter-spacing:.09em}
+  .property-body h3{font-size:22px}
+  .meta{font-size:12.25px;line-height:1.6}
+  .text-link{font-size:10.75px}
+  .amenity-mini span{font-size:11px}
+  .detail-title-row h1{font-size:31px}
+  .fact-row{font-size:12px}
+  .detail-copy h2{font-size:24px}
+  .detail-copy p{font-size:15px}
+  .feature-list li{font-size:12.5px}
+  .inquiry-card h3{font-size:20px}
+  .field label{font-size:9.5px}
+  .field input,.field select,.field textarea{font-size:13px}
+  .amenity-box b{font-size:13.5px}
+  .amenity-box span{font-size:10.75px}
+  .amenity-card h3,.experience-card h3{font-size:19px}
+  .amenity-card p,.experience-card p{font-size:11.75px;line-height:1.65}
+  .wide-cta h2{font-size:28px}
+  .wide-cta p{font-size:12px}
+  .story-copy h2{font-size:28px}
+  .story-copy p{font-size:13px}
+  .location-points li{font-size:12px}
+  .contact-item b{font-size:10px}
+  .contact-item span,.contact-item a{font-size:12.5px}
+  .destination-body article h2{font-size:28px}
+  .destination-body article p{font-size:14.75px}
+  .destination-aside h3{font-size:19px}
+  .destination-aside ul{font-size:12px}
+  .footer-copy{font-size:11px}
+  .footer-col h4{font-size:10px}
+  .footer-col a,.footer-col p{font-size:11px}
+  .footer-bottom{font-size:9px}
+  .legal-shell h3{font-size:14px}
+  .legal-shell p,.legal-shell li{font-size:13.25px}
+  .consent-check{font-size:10px}
+  .privacy-copy strong{font-size:17px}
+  .privacy-copy p{font-size:10.75px}
+  .privacy-actions button{font-size:8.75px}
+}
