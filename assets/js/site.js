@@ -41,7 +41,8 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
 
 // Privacy / cookie consent. No analytics or marketing scripts are loaded by default.
 (()=>{
-  const isEn=document.documentElement.lang==='en';
+  const lang=document.documentElement.lang||'hr';
+  const isEn=lang==='en';
   const path=location.pathname;
   const inNestedExperience=/\/experiences\//.test(path) || /\/izleti\//.test(path);
   let privacyHref;
@@ -156,4 +157,77 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
   };
 
   document.querySelectorAll('input[type="date"]').forEach(setupDateField);
+})();
+
+
+// Language switcher dropdowns (desktop + mobile)
+(()=>{
+  const closeAllLanguageMenus = ()=>{
+    document.querySelectorAll('.lang-switcher.open').forEach(sw=>{
+      sw.classList.remove('open');
+      const btn = sw.querySelector('.lang-switcher-toggle');
+      if(btn) btn.setAttribute('aria-expanded','false');
+    });
+  };
+
+  const enhanceLanguageBlock = (container, mobile=false)=>{
+    if(!container || container.dataset.langEnhanced==='true') return;
+    const links = [...container.querySelectorAll('a')];
+    if(!links.length) return;
+
+    const active = links.find(link=>link.classList.contains('active')) || links[0];
+    const currentLabel = (active.textContent || '').trim();
+
+    container.dataset.langEnhanced = 'true';
+    container.innerHTML = '';
+    container.classList.add('lang-has-dropdown');
+
+    const switcher = document.createElement('div');
+    switcher.className = 'lang-switcher' + (mobile ? ' lang-switcher-mobile' : '');
+
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'lang-switcher-toggle';
+    toggle.setAttribute('aria-expanded','false');
+    toggle.setAttribute('aria-label', mobile ? 'Odabir jezika' : 'Language selector');
+    toggle.innerHTML = `<span>${currentLabel}</span><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M5 7.5 10 12.5 15 7.5"></path></svg>`;
+
+    const menu = document.createElement('div');
+    menu.className = 'lang-switcher-menu';
+
+    links.forEach(link=>{
+      const clone = link.cloneNode(true);
+      clone.classList.add('lang-option');
+      if(clone.classList.contains('active')) clone.setAttribute('aria-current','true');
+      menu.appendChild(clone);
+    });
+
+    toggle.addEventListener('click',(e)=>{
+      e.stopPropagation();
+      const isOpen = switcher.classList.contains('open');
+      closeAllLanguageMenus();
+      switcher.classList.toggle('open', !isOpen);
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    menu.querySelectorAll('a').forEach(link=>{
+      link.addEventListener('click', ()=>{
+        closeAllLanguageMenus();
+      });
+    });
+
+    switcher.appendChild(toggle);
+    switcher.appendChild(menu);
+    container.appendChild(switcher);
+  };
+
+  enhanceLanguageBlock(document.querySelector('.lang'), false);
+  enhanceLanguageBlock(document.querySelector('.mobile-menu-languages'), true);
+
+  document.addEventListener('click', (e)=>{
+    if(!e.target.closest('.lang-switcher')) closeAllLanguageMenus();
+  });
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape') closeAllLanguageMenus();
+  });
 })();
