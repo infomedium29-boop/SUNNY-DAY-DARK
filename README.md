@@ -21,3 +21,7 @@ Deployment: upload this folder to GitHub and deploy with Cloudflare Pages as a s
 - Added required privacy consent checkbox to inquiry forms.
 - Added a privacy consent banner. No analytics/marketing scripts are loaded by default.
 - Before final production launch, replace controller/contact details with the exact legal owner details if needed.
+
+
+## v39 — Izleti
+Dodana premium stranica izleta, 9 glavnih itinerara/podstranica na 7 jezika, desktop dropdown i mobile accordion u navigaciji.

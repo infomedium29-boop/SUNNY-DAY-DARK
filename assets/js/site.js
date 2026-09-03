@@ -250,3 +250,52 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
     if(e.key === 'Escape') closeAllLanguageMenus();
   });
 })();
+
+
+// Premium excursions dropdown in desktop navigation + accordion on mobile.
+(()=>{
+  const lang=document.documentElement.lang||'hr';
+  const data={
+    hr:[['Orebić i Pelješac','orebic-peljesac',true],['Otok Korčula','korcula'],['Mljet','mljet'],['Neretva i Baćinska jezera','neretva-bacinska-jezera'],['Dubrovnik i okolica','dubrovnik'],['Hercegovina','hercegovina'],['Makarska i Biokovo','makarska-biokovo'],['Jezera kod Imotskog','imotski-jezera'],['Split, Trogir, Omiš i Cetina','split-trogir-omis']],
+    en:[['Orebić & Pelješac','orebic-peljesac',true],['Korčula Island','korcula'],['Mljet National Park','mljet'],['Neretva & Baćina Lakes','neretva-bacinska-jezera'],['Dubrovnik & Surroundings','dubrovnik'],['Herzegovina','hercegovina'],['Makarska & Biokovo','makarska-biokovo'],['Imotski Lakes','imotski-jezera'],['Split, Trogir, Omiš & Cetina','split-trogir-omis']],
+    pl:[['Orebić i Pelješac','orebic-peljesac',true],['Wyspa Korčula','korcula'],['Park Narodowy Mljet','mljet'],['Neretwa i Jeziora Baćina','neretva-bacinska-jezera'],['Dubrownik i okolice','dubrovnik'],['Hercegowina','hercegovina'],['Makarska i Biokovo','makarska-biokovo'],['Jeziora Imotski','imotski-jezera'],['Split, Trogir, Omiš i Cetina','split-trogir-omis']],
+    de:[['Orebić & Pelješac','orebic-peljesac',true],['Insel Korčula','korcula'],['Nationalpark Mljet','mljet'],['Neretva & Baćina-Seen','neretva-bacinska-jezera'],['Dubrovnik & Umgebung','dubrovnik'],['Herzegowina','hercegovina'],['Makarska & Biokovo','makarska-biokovo'],['Imotski-Seen','imotski-jezera'],['Split, Trogir, Omiš & Cetina','split-trogir-omis']],
+    sk:[['Orebić a Pelješac','orebic-peljesac',true],['Ostrov Korčula','korcula'],['Národný park Mljet','mljet'],['Neretva a Baćinské jazerá','neretva-bacinska-jezera'],['Dubrovník a okolie','dubrovnik'],['Hercegovina','hercegovina'],['Makarska a Biokovo','makarska-biokovo'],['Imotské jazerá','imotski-jezera'],['Split, Trogir, Omiš a Cetina','split-trogir-omis']],
+    cs:[['Orebić a Pelješac','orebic-peljesac',true],['Ostrov Korčula','korcula'],['Národní park Mljet','mljet'],['Neretva a Baćinská jezera','neretva-bacinska-jezera'],['Dubrovník a okolí','dubrovnik'],['Hercegovina','hercegovina'],['Makarska a Biokovo','makarska-biokovo'],['Imotská jezera','imotski-jezera'],['Split, Trogir, Omiš a Cetina','split-trogir-omis']],
+    hu:[['Orebić és Pelješac','orebic-peljesac',true],['Korčula-sziget','korcula'],['Mljet Nemzeti Park','mljet'],['Neretva és a Baćina-tavak','neretva-bacinska-jezera'],['Dubrovnik és környéke','dubrovnik'],['Hercegovina','hercegovina'],['Makarska és Biokovo','makarska-biokovo'],['Imotski-tavak','imotski-jezera'],['Split, Trogir, Omiš és Cetina','split-trogir-omis']]
+  }[lang]||[];
+  const path=location.pathname;
+  const nested=/\/izleti\//.test(path)||/\/experiences\//.test(path);
+  const tripHref=(slug,isRoot)=>{
+    if(isRoot) return (nested?'../':'')+'orebic-peljesac.html';
+    if(nested) return slug+'.html';
+    return (lang==='hr'?'izleti/':'experiences/')+slug+'.html';
+  };
+  const menuTitle={hr:'Svi izleti',en:'All experiences',pl:'Wszystkie wycieczki',de:'Alle Ausflüge',sk:'Všetky výlety',cs:'Všechny výlety',hu:'Összes program'}[lang]||'Experiences';
+
+  const nav=document.querySelector('.nav');
+  const exp=nav?[...nav.querySelectorAll('a')].find(a=>/experiences\.html$/.test(a.getAttribute('href')||'')):null;
+  if(exp && !exp.closest('.nav-trip-dropdown')){
+    const wrap=document.createElement('div'); wrap.className='nav-trip-dropdown';
+    exp.parentNode.insertBefore(wrap,exp); wrap.appendChild(exp);
+    exp.classList.add('nav-trip-main-link');
+    exp.insertAdjacentHTML('beforeend','<span class="nav-trip-chevron" aria-hidden="true">⌄</span>');
+    const panel=document.createElement('div'); panel.className='nav-trip-panel';
+    panel.innerHTML=`<div class="nav-trip-panel-head"><span>${menuTitle}</span><a href="${(nested?'../':'')+'experiences.html'}">↗</a></div><div class="nav-trip-panel-grid">${data.map((d,i)=>`<a href="${tripHref(d[1],d[2])}"><span>${String(i+1).padStart(2,'0')}</span><b>${d[0]}</b></a>`).join('')}</div>`;
+    wrap.appendChild(panel);
+  }
+
+  const mobileLinks=document.querySelector('.mobile-menu-links');
+  const mExp=mobileLinks?[...mobileLinks.querySelectorAll(':scope > a')].find(a=>/experiences\.html$/.test(a.getAttribute('href')||'')):null;
+  if(mExp && !mobileLinks.querySelector('.mobile-trip-group')){
+    const group=document.createElement('div'); group.className='mobile-trip-group';
+    const row=document.createElement('div'); row.className='mobile-trip-row';
+    mExp.parentNode.insertBefore(group,mExp); group.appendChild(row); row.appendChild(mExp);
+    const btn=document.createElement('button'); btn.type='button'; btn.className='mobile-trip-toggle'; btn.setAttribute('aria-expanded','false'); btn.setAttribute('aria-label',menuTitle); btn.innerHTML='<span></span>';
+    row.appendChild(btn);
+    const sub=document.createElement('div'); sub.className='mobile-trip-submenu';
+    sub.innerHTML=data.map(d=>`<a href="${tripHref(d[1],d[2])}">${d[0]}</a>`).join('');
+    group.appendChild(sub);
+    btn.addEventListener('click',()=>{const open=group.classList.toggle('open');btn.setAttribute('aria-expanded',String(open));});
+  }
+})();
