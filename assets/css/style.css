@@ -1261,3 +1261,9 @@ html.intro-reveal .availability-bar{
     font-size:11px;
   }
 }
+
+/* v36 — cleaner Croatian flag rendering */
+.lang-flag{width:22px;height:18px;flex:0 0 22px}
+.lang-flag svg{width:22px;height:15px;border-radius:3px;box-shadow:0 0 0 1px rgba(255,255,255,.16)}
+.lang-switcher-toggle .lang-flag{width:21px;height:17px;flex-basis:21px}
+.lang-switcher-toggle .lang-flag svg{width:21px;height:14px}
