@@ -1527,7 +1527,7 @@ html.intro-reveal .availability-bar{
     transition:transform .18s ease,opacity .18s ease,color .18s ease;
   }
   .nav-trip-panel-grid a .nav-trip-more::after{
-    content:'↗';
+    content:'';
     display:inline-block;
     margin-left:6px;
     font-size:12px;
@@ -1662,7 +1662,7 @@ html.intro-reveal .availability-bar{
     opacity:.9;
   }
   .mobile-trip-submenu .mobile-trip-link>.mobile-trip-more::after{
-    content:'↗';
+    content:'';
     display:inline-block;
     margin-left:5px;
     font-size:11px;
@@ -2096,3 +2096,117 @@ html.intro-reveal .availability-bar{
     font-size:10.9px;
   }
 }
+
+
+/* v56 — consistent thin gold arrows on iOS/Safari/Chrome (CSS-drawn, no emoji glyphs) */
+.premium-arrow{
+  position:relative!important;
+  display:inline-block!important;
+  width:14px!important;
+  height:14px!important;
+  min-width:14px!important;
+  flex:0 0 14px!important;
+  color:#f1c84a!important;
+  font-size:0!important;
+  line-height:0!important;
+  background:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  text-indent:-9999px!important;
+  overflow:visible!important;
+}
+.premium-arrow::before{
+  content:''!important;
+  position:absolute!important;
+  left:1px!important;
+  bottom:3px!important;
+  width:12px!important;
+  height:1.25px!important;
+  border:0!important;
+  border-radius:999px!important;
+  background:currentColor!important;
+  transform:rotate(-45deg)!important;
+  transform-origin:left center!important;
+}
+.premium-arrow::after{
+  content:''!important;
+  position:absolute!important;
+  top:1px!important;
+  right:1px!important;
+  width:6px!important;
+  height:6px!important;
+  border:0!important;
+  border-top:1.25px solid currentColor!important;
+  border-right:1.25px solid currentColor!important;
+  background:transparent!important;
+  transform:none!important;
+}
+.mobile-menu-cta b.premium-arrow{
+  position:absolute!important;
+  right:20px!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+}
+.mobile-fixed-availability b.premium-arrow{
+  position:relative!important;
+  transform:none!important;
+  margin-left:2px!important;
+}
+.trip-card-cta b.premium-arrow,
+.nav-trip-view-all b.premium-arrow{
+  transform:none!important;
+  margin-left:1px!important;
+}
+.mobile-trip-submenu-head a{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:8px!important;
+}
+.mobile-trip-submenu-head a .premium-arrow{
+  width:12px!important;
+  height:12px!important;
+  min-width:12px!important;
+  flex-basis:12px!important;
+}
+.mobile-trip-submenu-head a .premium-arrow::before{width:10px!important;height:1px!important;bottom:2.5px!important}
+.mobile-trip-submenu-head a .premium-arrow::after{width:5px!important;height:5px!important;border-width:1px!important}
+
+/* "Saznaj više" arrows in excursion dropdowns: draw the arrow instead of using ↗ text. */
+.nav-trip-panel-grid a .nav-trip-more,
+.mobile-trip-submenu .mobile-trip-link>.mobile-trip-more{
+  position:relative!important;
+  padding-right:17px!important;
+}
+.nav-trip-panel-grid a .nav-trip-more::before,
+.mobile-trip-submenu .mobile-trip-link>.mobile-trip-more::before{
+  content:''!important;
+  position:absolute!important;
+  right:1px!important;
+  top:50%!important;
+  width:10px!important;
+  height:1px!important;
+  border:0!important;
+  border-radius:999px!important;
+  background:currentColor!important;
+  transform:translateY(2px) rotate(-45deg)!important;
+  transform-origin:right center!important;
+  opacity:1!important;
+}
+.nav-trip-panel-grid a .nav-trip-more::after,
+.mobile-trip-submenu .mobile-trip-link>.mobile-trip-more::after{
+  content:''!important;
+  position:absolute!important;
+  right:0!important;
+  top:calc(50% - 6px)!important;
+  width:5px!important;
+  height:5px!important;
+  margin:0!important;
+  border:0!important;
+  border-top:1px solid currentColor!important;
+  border-right:1px solid currentColor!important;
+  background:transparent!important;
+  transform:none!important;
+  opacity:1!important;
+}
+.nav-trip-panel-grid a:hover .nav-trip-more::before{transform:translate(2px,2px) rotate(-45deg)!important}
+.nav-trip-panel-grid a:hover .nav-trip-more::after{transform:translateX(2px)!important}

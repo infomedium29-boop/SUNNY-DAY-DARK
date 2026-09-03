@@ -329,7 +329,7 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
     panel.innerHTML=`
       <div class="nav-trip-panel-head">
         <div><small>Sunny Day</small><strong>${menuTitle}</strong></div>
-        <a class="nav-trip-view-all" href="${(nested?'../':'')+'experiences.html'}"><span>${viewAll}</span><b>↗</b></a>
+        <a class="nav-trip-view-all" href="${(nested?'../':'')+'experiences.html'}"><span>${viewAll}</span><b class="premium-arrow" aria-hidden="true"></b></a>
       </div>
       <div class="nav-trip-panel-grid">
         ${data.map((d)=>`<a href="${tripHref(d[1],d[2])}"><b>${d[0]}</b><span class="nav-trip-more">${learnMore}</span></a>`).join('')}
@@ -374,7 +374,7 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
 
     const sub=document.createElement('div');
     sub.className='mobile-trip-submenu';
-    sub.innerHTML=`<div class="mobile-trip-submenu-head"><span>${menuTitle}</span><a href="${(nested?'../':'')+'experiences.html'}">${viewAll} ↗</a></div>${data.map((d)=>`<a class="mobile-trip-link" href="${tripHref(d[1],d[2])}"><b>${d[0]}</b><span class="mobile-trip-more">${learnMore}</span></a>`).join('')}`;
+    sub.innerHTML=`<div class="mobile-trip-submenu-head"><span>${menuTitle}</span><a href="${(nested?'../':'')+'experiences.html'}">${viewAll}<i class="premium-arrow" aria-hidden="true"></i></a></div>${data.map((d)=>`<a class="mobile-trip-link" href="${tripHref(d[1],d[2])}"><b>${d[0]}</b><span class="mobile-trip-more">${learnMore}</span></a>`).join('')}`;
     group.appendChild(sub);
 
     btn.addEventListener('click',()=>{
@@ -406,7 +406,7 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
   cta.className = 'mobile-fixed-availability';
   cta.href = href;
   cta.setAttribute('aria-label', label);
-  cta.innerHTML = `<span>${label}</span><b aria-hidden="true">↗</b>`;
+  cta.innerHTML = `<span>${label}</span><b class="premium-arrow" aria-hidden="true"></b>`;
 
   document.body.appendChild(cta);
   document.body.classList.add('has-mobile-fixed-availability');
