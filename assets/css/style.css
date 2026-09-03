@@ -1166,3 +1166,40 @@ html.intro-reveal .availability-bar{
     font-size:9.5px;
   }
 }
+
+
+/* v33 — flag styling for language dropdown */
+.lang-inline{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+}
+.lang-flag{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:15px;
+  line-height:1;
+}
+.lang-code{
+  display:inline-block;
+  line-height:1;
+}
+.lang-switcher-toggle .lang-inline{
+  gap:8px;
+}
+.lang-switcher-menu a{
+  gap:0;
+}
+.lang-switcher-menu .lang-inline{
+  width:100%;
+  justify-content:flex-start;
+}
+.lang-switcher-menu .lang-flag{
+  font-size:14px;
+}
+@media(max-width:980px){
+  .lang-switcher-mobile .lang-flag{
+    font-size:15px;
+  }
+}

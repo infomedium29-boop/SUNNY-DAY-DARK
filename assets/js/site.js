@@ -162,12 +162,28 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
 
 // Language switcher dropdowns (desktop + mobile)
 (()=>{
+  const languageFlags = {
+    HR:'🇭🇷',
+    EN:'🇬🇧',
+    PL:'🇵🇱',
+    DE:'🇩🇪',
+    SK:'🇸🇰',
+    CZ:'🇨🇿',
+    HU:'🇭🇺'
+  };
+
   const closeAllLanguageMenus = ()=>{
     document.querySelectorAll('.lang-switcher.open').forEach(sw=>{
       sw.classList.remove('open');
       const btn = sw.querySelector('.lang-switcher-toggle');
       if(btn) btn.setAttribute('aria-expanded','false');
     });
+  };
+
+  const languageMarkup = (code)=>{
+    const cleanCode = (code || '').trim().toUpperCase();
+    const flag = languageFlags[cleanCode] || '🌐';
+    return `<span class="lang-inline"><span class="lang-flag" aria-hidden="true">${flag}</span><span class="lang-code">${cleanCode}</span></span>`;
   };
 
   const enhanceLanguageBlock = (container, mobile=false)=>{
@@ -190,14 +206,16 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
     toggle.className = 'lang-switcher-toggle';
     toggle.setAttribute('aria-expanded','false');
     toggle.setAttribute('aria-label', mobile ? 'Odabir jezika' : 'Language selector');
-    toggle.innerHTML = `<span>${currentLabel}</span><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M5 7.5 10 12.5 15 7.5"></path></svg>`;
+    toggle.innerHTML = `${languageMarkup(currentLabel)}<svg aria-hidden="true" viewBox="0 0 20 20"><path d="M5 7.5 10 12.5 15 7.5"></path></svg>`;
 
     const menu = document.createElement('div');
     menu.className = 'lang-switcher-menu';
 
     links.forEach(link=>{
       const clone = link.cloneNode(true);
+      const code = (clone.textContent || '').trim();
       clone.classList.add('lang-option');
+      clone.innerHTML = languageMarkup(code);
       if(clone.classList.contains('active')) clone.setAttribute('aria-current','true');
       menu.appendChild(clone);
     });
