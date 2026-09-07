@@ -2350,3 +2350,37 @@ html.intro-reveal .availability-bar{
   .experiences-page-hero > img{object-position:center 50%}
   .contact-page-hero > img{object-position:center 50%}
 }
+
+
+/* v60 — cleaner mobile CTA/submenu without side arrows */
+.mobile-trip-submenu-head a .premium-arrow,
+.mobile-trip-link .premium-arrow,
+.mobile-menu-cta .premium-arrow,
+.mobile-fixed-availability .premium-arrow{
+  display:none !important;
+}
+.mobile-trip-submenu-head a,
+.mobile-trip-link .mobile-trip-more,
+.mobile-menu-cta,
+.mobile-fixed-availability{
+  padding-right:0 !important;
+}
+.mobile-trip-submenu-head a::before,
+.mobile-trip-submenu-head a::after,
+.mobile-trip-link .mobile-trip-more::before,
+.mobile-trip-link .mobile-trip-more::after,
+.mobile-menu-cta::before,
+.mobile-menu-cta::after,
+.mobile-fixed-availability::before,
+.mobile-fixed-availability::after{
+  content:none !important;
+  display:none !important;
+}
+.mobile-fixed-availability,
+.mobile-menu-cta{
+  justify-content:center !important;
+  gap:0 !important;
+}
+.mobile-trip-submenu-head a{
+  gap:0 !important;
+}
