@@ -101,8 +101,8 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
     return;
   }
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const duration=reduced?450:2050;
-  const exitDuration=reduced?300:950;
+  const duration=reduced?260:820;
+  const exitDuration=reduced?180:320;
   const finish=()=>{
     root.classList.add('intro-reveal');
     intro.classList.add('is-leaving');
@@ -110,7 +110,7 @@ document.querySelectorAll('form[data-web3forms]').forEach(form=>form.addEventLis
     window.setTimeout(()=>{
       root.classList.remove('intro-first');
       intro.remove();
-      window.setTimeout(()=>root.classList.remove('intro-reveal'),1050);
+      window.setTimeout(()=>root.classList.remove('intro-reveal'),360);
     },exitDuration);
   };
   window.setTimeout(finish,duration);
