@@ -2339,3 +2339,14 @@ html.intro-reveal .availability-bar{
     padding:0 50px!important;
   }
 }
+
+/* v59 — meaningful real-photo heroes from the original Sunny Day photo archive */
+.apartments-page-hero > img{object-position:center 52%}
+.experiences-page-hero > img{object-position:center 50%}
+.contact-page-hero > img{object-position:center 48%}
+
+@media(max-width:640px){
+  .apartments-page-hero > img{object-position:center 50%}
+  .experiences-page-hero > img{object-position:center 50%}
+  .contact-page-hero > img{object-position:center 50%}
+}
