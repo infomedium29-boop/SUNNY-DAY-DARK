@@ -2676,3 +2676,32 @@ html.intro-first .site-header .nav-wrap{
 html.intro-reveal .site-header .nav-wrap{
   transform:translateY(0)!important;
 }
+
+
+/* v64 — perfectly center mobile availability/menu CTA text */
+.mobile-menu-cta,
+.mobile-fixed-availability{
+  display:grid !important;
+  place-items:center !important;
+  text-align:center !important;
+}
+.mobile-menu-cta span,
+.mobile-fixed-availability span{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:100% !important;
+  text-align:center !important;
+}
+@media(max-width:980px){
+  .mobile-menu-cta{
+    padding-left:20px !important;
+    padding-right:20px !important;
+  }
+}
+@media(max-width:640px){
+  .mobile-menu-cta{
+    padding-left:18px !important;
+    padding-right:18px !important;
+  }
+}
