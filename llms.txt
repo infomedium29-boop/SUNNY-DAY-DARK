@@ -1,0 +1,27 @@
+# Sunny Day Orebić
+
+> Premium holiday apartments in Orebić, Pelješac, Croatia, with direct availability inquiries by contact form, WhatsApp, and phone.
+
+## Main pages
+
+- [Home](https://sunny-day-dark.pages.dev/): Sunny Day Orebić overview, featured apartments and availability inquiry.
+- [Apartments](https://sunny-day-dark.pages.dev/apartments.html): Browse all Sunny Day apartments.
+- [Amenities](https://sunny-day-dark.pages.dev/amenities.html): Pool, parking, Wi-Fi, kitchens and other guest amenities.
+- [Location](https://sunny-day-dark.pages.dev/location.html): Location information for Sunny Day Orebić.
+- [Experiences and day trips](https://sunny-day-dark.pages.dev/experiences.html): Recommended excursions from Orebić and Pelješac.
+- [Gallery](https://sunny-day-dark.pages.dev/gallery.html): Photo gallery of the property and apartments.
+- [About](https://sunny-day-dark.pages.dev/about.html): About Sunny Day Orebić.
+- [Contact and availability](https://sunny-day-dark.pages.dev/contact.html): Send an availability inquiry or contact Sunny Day directly.
+
+## Featured excursions
+
+- [Orebić and Pelješac](https://sunny-day-dark.pages.dev/orebic-peljesac.html): Local places, beaches, vineyards and Pelješac highlights.
+- [Korčula](https://sunny-day-dark.pages.dev/izleti/korcula.html): Day trip guide to Korčula.
+- [Mljet](https://sunny-day-dark.pages.dev/izleti/mljet.html): National Park Mljet day trip guide.
+- [Dubrovnik](https://sunny-day-dark.pages.dev/izleti/dubrovnik.html): Dubrovnik and surroundings day trip guide.
+
+## Contact
+
+- [Availability inquiry](https://sunny-day-dark.pages.dev/contact.html): Contact form for dates, guest count and message.
+- [Privacy policy](https://sunny-day-dark.pages.dev/politika-privatnosti.html): Privacy information.
+- [GDPR](https://sunny-day-dark.pages.dev/gdpr.html): Data protection information.

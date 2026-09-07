@@ -14,6 +14,7 @@ if(burger&&mobile){
     document.body.classList.toggle('menu-open',open);
     burger.setAttribute('aria-expanded',String(open));
     mobile.setAttribute('aria-hidden',String(!open));
+    mobile.toggleAttribute('inert',!open);
   };
   burger.addEventListener('click',()=>setMobileMenu(!mobile.classList.contains('open')));
   mobile.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMobileMenu(false)));
