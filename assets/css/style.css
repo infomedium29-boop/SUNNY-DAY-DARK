@@ -2651,3 +2651,28 @@ html.intro-reveal .availability-bar{
     transform:translate(-50%,-50%) rotate(225deg)!important;
   }
 }
+
+
+/* v63 — eliminate first-entry layout shift / micro zoom */
+html{
+  scrollbar-gutter:stable;
+  overflow-x:hidden;
+}
+/* Keep the page width stable while the intro locks scrolling. */
+html.intro-first{
+  scrollbar-gutter:stable;
+}
+/* The hero previously had a slow scale-down animation that could feel like
+   the whole page was shrinking as the intro disappeared. Keep it optically stable. */
+.hero-media img,
+.hero-media .hero-poster{
+  animation:none!important;
+  transform:none!important;
+}
+/* Avoid sub-pixel scaling on the floating header during the hidden intro state. */
+html.intro-first .site-header .nav-wrap{
+  transform:translateY(-8px)!important;
+}
+html.intro-reveal .site-header .nav-wrap{
+  transform:translateY(0)!important;
+}
