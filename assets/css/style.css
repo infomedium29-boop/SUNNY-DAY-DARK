@@ -2611,3 +2611,43 @@ html.intro-reveal .availability-bar{
     min-height:54px;
   }
 }
+
+
+/* v62 — center mobile excursions chevron inside circular toggle */
+@media(max-width:980px){
+  .mobile-trip-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .mobile-trip-toggle span{
+    position:relative;
+    display:block;
+    width:100%;
+    height:100%;
+  }
+  .mobile-trip-toggle span:before{
+    width:9px!important;
+    height:9px!important;
+    left:50%!important;
+    top:50%!important;
+    transform:translate(-50%,-50%) rotate(45deg)!important;
+    transform-origin:center!important;
+  }
+  .mobile-trip-group.open .mobile-trip-toggle span:before{
+    transform:translate(-50%,-50%) rotate(225deg)!important;
+  }
+}
+
+@media(max-width:640px){
+  .mobile-trip-toggle span:before{
+    width:8px!important;
+    height:8px!important;
+    left:50%!important;
+    top:50%!important;
+    transform:translate(-50%,-50%) rotate(45deg)!important;
+  }
+  .mobile-trip-group.open .mobile-trip-toggle span:before{
+    transform:translate(-50%,-50%) rotate(225deg)!important;
+  }
+}
